@@ -6,7 +6,7 @@ import Placeholder from "@tiptap/extension-placeholder"
 import Image from "@tiptap/extension-image"
 import { Link } from "@tiptap/extension-link"
 import { Button } from "@/components/ui/button"
-import { Bold, Italic, List, ListOrdered, Heading1, Heading2, ImageIcon, Link as LinkIcon, Quote, Undo, Redo } from "lucide-react"
+import { Bold, Italic, List, ListOrdered, Heading, ImageIcon, Link as LinkIcon, Quote } from "lucide-react"
 import { useCallback } from "react"
 
 interface EditorProps {
@@ -57,8 +57,8 @@ export function Editor({ value, onChange, placeholder = "Start writing..." }: Ed
   }
 
   return (
-    <div className="border-none rounded-md">
-      <div className="flex flex-wrap gap-1 p-2 border-b">
+    <div className="border-none">
+      <div className="border-none flex flex-wrap gap-1 text-zinc-400">
         <Button
           variant="ghost"
           size="sm"
@@ -78,18 +78,10 @@ export function Editor({ value, onChange, placeholder = "Start writing..." }: Ed
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-          className={editor.isActive("heading", { level: 1 }) ? "bg-muted" : ""}
-        >
-          <Heading1 className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
           onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
           className={editor.isActive("heading", { level: 2 }) ? "bg-muted" : ""}
         >
-          <Heading2 className="h-4 w-4" />
+          <Heading className="h-4 w-4" />
         </Button>
         <Button
           variant="ghost"
@@ -121,24 +113,8 @@ export function Editor({ value, onChange, placeholder = "Start writing..." }: Ed
         <Button variant="ghost" size="sm" onClick={addLink} className={editor.isActive("link") ? "bg-muted" : ""}>
           <LinkIcon className="h-4 w-4" />
         </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => editor.chain().focus().undo().run()}
-          disabled={!editor.can().undo()}
-        >
-          <Undo className="h-4 w-4" />
-        </Button>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => editor.chain().focus().redo().run()}
-          disabled={!editor.can().redo()}
-        >
-          <Redo className="h-4 w-4" />
-        </Button>
       </div>
-      <EditorContent editor={editor} className="prose prose-stone dark:prose-invert max-w-none p-4 min-h-[300px]" />
+      <EditorContent editor={editor} className="prose prose-stone dark:prose-invert max-w-none py-0 px-2 min-h-[300px]" />
     </div>
   )
 }

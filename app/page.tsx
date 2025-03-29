@@ -64,8 +64,8 @@ export default function EditorPage() {
   };
 
   return (
-    <div className="container max-w-3xl mx-auto px-4 py-8">
-      <div className="space-y-6">
+    <div className="container max-w-3xl mx-auto px-4 mt-16">
+      <div className="space-y-4">
         <div className="flex items-center justify-between">
           <Input
             type="text"
@@ -74,15 +74,16 @@ export default function EditorPage() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <div className="flex items-center gap-2 ">
-            <Button variant="outline" onClick={handlePublish} disabled={isPublishing}>
+          <div className="flex items-center gap-2 font-sans">
+            <Button variant="outline" onClick={handlePublish}
+                   className=" border-black border-2 dark:border-white rounded-full h-8" disabled={isPublishing}>
               {isPublishing ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                   Publishing
                 </>
               ) : (
-                "Publish"
+                "PUBLISH"
               )}
             </Button>
           </div>
@@ -91,7 +92,7 @@ export default function EditorPage() {
         <Input
           type="text"
           placeholder="Your name"
-          className="border-none px-2 w-1/2 h-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+          className="border-none px-2 w-1/2 focus-visible:ring-0 focus-visible:ring-offset-0"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
